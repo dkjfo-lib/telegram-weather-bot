@@ -15,8 +15,8 @@ def launch_bot():
     TOKEN = os.getenv('BOT_TOKEN')
     LOCAL = bool(int(os.getenv('LOCAL')))
     WEBHOOK = os.getenv('WEBHOOK_URL')
-    PORT = os.getenv('PORT')
-    IP = int(os.getenv('IP'))
+    PORT = int(os.getenv('PORT'))
+    IP = os.getenv('IP')
     
     application = ApplicationBuilder().token(TOKEN).build()
     start_handler = CommandHandler('start', start)
