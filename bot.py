@@ -1,5 +1,6 @@
 import os
 import logging
+from weather import get_weather_test
 from telegram import Update
 from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
 
@@ -11,6 +12,12 @@ logging.basicConfig(
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text="I'm a bot, please talk to me!")
 
+async def weather(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    city = str(context.args[0])
+    messages = await get_weather_test(city)
+    for message in messages:
+        await context.bot.send_message(chat_id=update.effective_chat.id, text=message)
+
 def launch_bot():
     TOKEN = os.getenv('BOT_TOKEN')
     LOCAL = bool(int(os.getenv('LOCAL')))
@@ -19,8 +26,8 @@ def launch_bot():
     IP = os.getenv('IP')
     
     application = ApplicationBuilder().token(TOKEN).build()
-    start_handler = CommandHandler('start', start)
-    application.add_handler(start_handler)
+    application.add_handler(CommandHandler('start', start))
+    application.add_handler(CommandHandler('weather', weather))
     
     if LOCAL:
         print('polling messages...')

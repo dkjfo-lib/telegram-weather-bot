@@ -20,7 +20,11 @@ WEBHOOK_URL
 IP
 PORT
 ```
-
+launch
+```
+.\venv\Scripts\activate
+python main.py
+```
 ## Usage
 
 go to telegram
@@ -28,6 +32,8 @@ go to telegram
 find your bot or mine at @mikes_weather_bot
 
 start chatting! : )
+
+use /weather {city} to get forecast for today in the given city
 
 # Plans
 
