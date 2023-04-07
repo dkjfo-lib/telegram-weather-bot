@@ -13,10 +13,10 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 def launch_bot():
     TOKEN = os.getenv('BOT_TOKEN')
-    LOCAL = os.getenv('LOCAL')
+    LOCAL = bool(int(os.getenv('LOCAL')))
     WEBHOOK = os.getenv('WEBHOOK_URL')
     PORT = os.getenv('PORT')
-    IP = os.getenv('IP')
+    IP = int(os.getenv('IP'))
     
     application = ApplicationBuilder().token(TOKEN).build()
     start_handler = CommandHandler('start', start)
