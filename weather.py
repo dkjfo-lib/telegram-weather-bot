@@ -3,7 +3,7 @@ import os
 import datetime
 
 
-async def get_weather_test(city: str):
+async def get_weather_test(city: str, days :int):
     API_KEY = os.getenv('OPEN_WEATHER_MAP_API')
     complete_url = f'http://api.openweathermap.org/data/2.5/forecast?q={city}&appid={API_KEY}&units=metric&cnt=1'
     response = requests.get(complete_url, params={'lang': 'ru'})
@@ -19,7 +19,7 @@ async def get_weather_test(city: str):
     lon = round(x["city"]["coord"]["lon"], 2)
     coords = f'latitude={lat}&longitude={lon}'
     dayStart = (datetime.datetime.utcnow() + datetime.timedelta(seconds=timezone_s)).strftime('%Y-%m-%d')
-    dayEnd = (datetime.datetime.utcnow() + datetime.timedelta(days=3, seconds=timezone_s)).strftime('%Y-%m-%d')
+    dayEnd = (datetime.datetime.utcnow() + datetime.timedelta(days=days, seconds=timezone_s)).strftime('%Y-%m-%d')
     complete_url = f'https://api.open-meteo.com/v1/forecast?{coords}&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,precipitation_probability,precipitation,weathercode,windspeed_10m&daily=sunrise,sunset,uv_index_max,precipitation_sum&windspeed_unit=ms&start_date={dayStart}&end_date={dayEnd}&timezone=auto'
     response = requests.get(complete_url)
     data = response.json()
