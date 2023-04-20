@@ -33,5 +33,10 @@ def launch_bot():
         print('polling messages...')
         application.run_polling()
     else:
+        application.run_webhook()
         print(f'setting webhook on "{WEBHOOK}" listening on address "{IP}:{PORT}"...')
-        application.run_webhook(listen=IP, port=int(PORT), url_path=TOKEN, webhook_url=WEBHOOK)
+        application.run_webhook(
+            listen=IP, 
+            port=PORT, 
+            url_path=TOKEN, 
+            webhook_url=WEBHOOK)

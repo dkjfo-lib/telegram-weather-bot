@@ -18,12 +18,14 @@ async def get_weather_test(city: str):
     lat = round(x["city"]["coord"]["lat"], 2)
     lon = round(x["city"]["coord"]["lon"], 2)
     coords = f'latitude={lat}&longitude={lon}'
-    day = (datetime.datetime.utcnow() + datetime.timedelta(seconds=timezone_s)).strftime('%Y-%m-%d')
-    complete_url = f'https://api.open-meteo.com/v1/forecast?{coords}&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,precipitation_probability,precipitation,weathercode,windspeed_10m&daily=sunrise,sunset,uv_index_max,precipitation_sum&windspeed_unit=ms&start_date={day}&end_date={day}&timezone=auto'
+    dayStart = (datetime.datetime.utcnow() + datetime.timedelta(seconds=timezone_s)).strftime('%Y-%m-%d')
+    dayEnd = (datetime.datetime.utcnow() + datetime.timedelta(days=3, seconds=timezone_s)).strftime('%Y-%m-%d')
+    complete_url = f'https://api.open-meteo.com/v1/forecast?{coords}&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,precipitation_probability,precipitation,weathercode,windspeed_10m&daily=sunrise,sunset,uv_index_max,precipitation_sum&windspeed_unit=ms&start_date={dayStart}&end_date={dayEnd}&timezone=auto'
     response = requests.get(complete_url)
     data = response.json()
     print()
-    print(day)
+    print(dayStart)
+    print(dayEnd)
     print()
     print(data)
     print()
