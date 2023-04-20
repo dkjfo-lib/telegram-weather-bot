@@ -8,6 +8,8 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO
 )
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text="I'm a bot, please talk to me!")
@@ -25,20 +27,20 @@ def launch_bot():
     PORT = int(os.getenv('PORT'))
     IP = os.getenv('IP')
     
-    print(f'creating bot with token:"{TOKEN}"...')
+    logger.info(f'creating bot with token:"{TOKEN}"...')
     application = ApplicationBuilder().token(TOKEN).build()
     application.add_handler(CommandHandler('start', start))
     application.add_handler(CommandHandler('weather', weather))
-    print(f'bot successfully created.')
+    logger.info(f'bot successfully created.')
     
     if LOCAL:
-        print('polling messages...')
+        logger.info('polling messages...')
         application.run_polling()
     else:
-        print(f'setting webhook on "{WEBHOOK}" listening on address "{IP}:{PORT}"...')
+        logger.info(f'setting webhook on "{WEBHOOK}" listening on address "{IP}:{PORT}"...')
         application.run_webhook(
             listen=IP, 
             port=PORT, 
             url_path=TOKEN, 
             webhook_url=WEBHOOK)
-        print(f'Webhook deployed!')
+        logger.info(f'Webhook deployed!')
