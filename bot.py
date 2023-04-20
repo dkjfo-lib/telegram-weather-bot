@@ -25,9 +25,11 @@ def launch_bot():
     PORT = int(os.getenv('PORT'))
     IP = os.getenv('IP')
     
+    print(f'creating bot with token:"{TOKEN}"...')
     application = ApplicationBuilder().token(TOKEN).build()
     application.add_handler(CommandHandler('start', start))
     application.add_handler(CommandHandler('weather', weather))
+    print(f'bot successfully created.')
     
     if LOCAL:
         print('polling messages...')
@@ -39,3 +41,4 @@ def launch_bot():
             port=PORT, 
             url_path=TOKEN, 
             webhook_url=WEBHOOK)
+        print(f'Webhook deployed!')
