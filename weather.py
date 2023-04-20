@@ -15,9 +15,9 @@ async def get_weather_test(city: str, days :int):
     complete_url = f'http://api.openweathermap.org/data/2.5/forecast?q={city}&appid={API_KEY}&units=metric&cnt=1'
     response = requests.get(complete_url, params={'lang': 'ru'})
     x = response.json()
-    logger.info()
+    logger.info("")
     logger.info(x)
-    logger.info()
+    logger.info("")
     code=x["cod"]
     if code != "200":
         return [x["message"]]
@@ -30,13 +30,13 @@ async def get_weather_test(city: str, days :int):
     complete_url = f'https://api.open-meteo.com/v1/forecast?{coords}&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,precipitation_probability,precipitation,weathercode,windspeed_10m&daily=sunrise,sunset,uv_index_max,precipitation_sum&windspeed_unit=ms&start_date={dayStart}&end_date={dayEnd}&timezone=auto'
     response = requests.get(complete_url)
     data = response.json()
-    logger.info()
+    logger.info("")
     logger.info(dayStart)
     logger.info(dayEnd)
-    logger.info()
+    logger.info("")
     logger.info(data)
-    logger.info()
-    logger.info()
+    logger.info("")
+    logger.info("")
 
     data_h = data["hourly"]
     data_day = data["daily"]
