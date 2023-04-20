@@ -16,7 +16,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def weather(update: Update, context: ContextTypes.DEFAULT_TYPE):
     city = str(context.args[0])
-    messages = await get_weather_test(city)
+    days = int(context.args[1])
+    messages = await get_weather_test(city, days)
     for message in messages:
         await context.bot.send_message(chat_id=update.effective_chat.id, text=message)
 
