@@ -12,11 +12,14 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    logger.info(f'command: {update.message}')
     await context.bot.send_message(chat_id=update.effective_chat.id, text="I'm a bot, please talk to me!")
 
 async def weather(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    logger.info(f'command: {update.message}')
     city = str(context.args[0])
     days = int(context.args[1])
+    logger.info(f'weather in {city} for {days} days')
     messages = await get_weather_test(city, days)
     for message in messages:
         await context.bot.send_message(chat_id=update.effective_chat.id, text=message)
