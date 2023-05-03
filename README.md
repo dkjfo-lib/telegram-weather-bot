@@ -11,14 +11,16 @@ python -m venv venv
 .\venv\Scripts\activate
 pip install -r .\requirements.txt
 ```
+Get [openweathermap.org](https://openweathermap.org/) API key by creating free account.
 
 Create .env file with the following parameters
 ```
 BOT_TOKEN
 LOCAL
 WEBHOOK_URL
-IP
 PORT
+IP
+OPEN_WEATHER_MAP_API 
 ```
 launch
 ```
@@ -29,15 +31,15 @@ python main.py
 
 go to telegram
 
-find your bot or mine at @mikes_weather_bot
+find your bot or mine at [@mikes_weather_bot](https://t.me/mikes_weather_bot)
 
 start chatting! : )
 
-use /weather {city} to get forecast for today in the given city
+use /weather {city} {days_count} to get forecast for today in the given city
+
+example: "/weather New York 1" will give you forecast for today in NY
 
 # Plans
-
-weather forecast on demand [day, 3days, week, 10days, custom time span]
 
 Personally timed weather forecast messaging 
 
