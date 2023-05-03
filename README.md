@@ -39,7 +39,7 @@ use /weather {city} {days_count} to get forecast for today in the given city
 
 example: "/weather New York 1" will give you forecast for today in NY
 
-# Plans
+## Plans
 
 Personally timed weather forecast messaging 
 
